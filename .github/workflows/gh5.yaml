@@ -10,6 +10,6 @@ jobs:
   build-gh6:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "{{secrets.API_KEY}}"
+      - run: echo "{{ secrets.API_KEY }}"
 
 
