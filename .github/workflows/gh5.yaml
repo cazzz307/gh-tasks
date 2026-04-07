@@ -1,0 +1,13 @@
+name: secrets
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-gh6:
+    steps:
+      - run: echo "{{secrets.API_KEY}}"
+
+
