@@ -1,0 +1,29 @@
+name: log
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  logs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Log details
+        run: |
+          echo "Commit Message: ${{ github.event.head_commit.message }}" >> commit-log.txt
+          echo "Author: ${{ github.actor }}" >> commit-log.txt
+          echo "Commit ID: ${{ github.sha }}" >> commit-log.txt
+          echo "Branch: ${{ github.ref_name }}" >> commit-log.txt
+          echo "Timestamp: $(date)" >> commit-log.txt
+          echo "----- LOG FILE -----"
+          cat commit-log.txt
+
+      - name: Upload log file
+        uses: actions/upload-artifact@v4
+        with:
+          name: commit-log
+          path: commit-log.txt
